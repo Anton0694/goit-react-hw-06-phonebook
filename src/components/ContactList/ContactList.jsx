@@ -14,10 +14,12 @@ export default function ContactList({ contacts }) {
           <ContactListText>{`${name}: ${number}`}</ContactListText>
           <Button
         type="button"
-        onClick={() => dispatch(deleteContact({ id: contacts.id }))}
+            onClick={() => dispatch(deleteContact({ id }))}
+        
       >
         Delete
-      </Button>
+          </Button>
+          
         </ContactsListItem>
       ))}         
     </ContactsList>

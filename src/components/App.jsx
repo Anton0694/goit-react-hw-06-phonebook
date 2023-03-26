@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact, deleteContact, getContacts } from 'redux/contactsSlice';
+import { addContact, deleteContact } from './redux/contactSlice';
+import { getContacts } from './redux/selectors';
 import { useState } from 'react';
 import  ContactForm  from './ContactForm/ContactForm';
 import  ContactList  from './ContactList/ContactList';

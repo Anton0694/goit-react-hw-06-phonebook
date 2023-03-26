@@ -1,4 +1,7 @@
 import { useState } from "react"
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+/* import { getContacts } from 'redux/selectors'; */
 
 import {Form, Input, Label, Button } from "./ContactForm.styled"
 
@@ -6,11 +9,14 @@ import {Form, Input, Label, Button } from "./ContactForm.styled"
 export default function ContactForm ({onSubmit})  {
   const [name, setName] = useState('')
   const [number, setNumber] = useState('')
+
+    const dispatch = useDispatch();
+ 
   
   
   const handleSubmit = event => {
        event.preventDefault();
-       onSubmit({name, number})
+        dispatch(addContact({ name, number }));
        reset();
   }  
   
@@ -27,7 +33,9 @@ export default function ContactForm ({onSubmit})  {
       default:
         return
     }
-    };    
+  };    
+  
+
     
   const  reset = () => {
     setName('')
@@ -38,25 +46,25 @@ export default function ContactForm ({onSubmit})  {
        return (
         
            <Form onSubmit={handleSubmit}>
-             <Label /* htmlFor={nameInputId} */>Name
+             <Label >Name
                <Input
                  onChange={handleInputChange}
                  type="text"
                  value={name}
                  name="name"
-                 /* id={nameInputId} */
+               
                  pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                  title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                  required
                />
              </Label>
-             <Label /* htmlFor={telInputId} */>Phone number
+             <Label >Phone number
                <Input
                  onChange={handleInputChange}
                  type="tel"
                  value={number}
                  name="number"
-                 /* id={telInputId} */
+                
                  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                  required

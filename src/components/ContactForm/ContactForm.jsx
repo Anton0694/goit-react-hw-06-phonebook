@@ -34,8 +34,6 @@ export default function ContactForm ()  {
     }
   };    
   
-
-    
   const  reset = () => {
     setName('')
     setNumber('')

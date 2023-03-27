@@ -11,7 +11,7 @@ import React from 'react';
 export default function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  
  
 
   const onSubmitHandler = (data) => {
@@ -32,15 +32,10 @@ export default function App() {
     dispatch(addContact(contact));
   };
 
-  const onDeleteHandler = (id) => {
+   const onDeleteHandler = (id) => {
     dispatch(deleteContact(id));
   };
 
-  
-
-  const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
 
   return (
     <ContainerApp>
@@ -48,7 +43,7 @@ export default function App() {
       <ContactForm onSubmit={onSubmitHandler} />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList contacts={filteredContacts} onDeleteContact={onDeleteHandler} />
+      <ContactList onDeleteContact={onDeleteHandler}/>
     </ContainerApp>
   );
 }

@@ -15,7 +15,7 @@ const filteredContacts = filter
       )
     : contacts;
 
-  console.log(contacts)
+  
   return (
     <ContactsList  contacts={filteredContacts} >
       {filteredContacts.map(({ id, name, number }) => (
@@ -23,9 +23,9 @@ const filteredContacts = filter
           <ContactListText>{`${name}: ${number}`}</ContactListText>
           <Button
         type="button"
-            onClick={() => dispatch(deleteContact({ id }))}
-        
-      >
+            onClick={() =>
+              dispatch(deleteContact({ id }))
+            }>
         Delete
           </Button>
           

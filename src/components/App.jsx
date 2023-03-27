@@ -1,9 +1,6 @@
-
-
-  import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addContact, deleteContact } from './redux/contactSlice';
 import { getContacts, getFilter } from './redux/selectors';
-import { useState } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -15,7 +12,7 @@ export default function App() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
-  const [search, setSearch] = useState('');
+ 
 
   const onSubmitHandler = (data) => {
     const isContactExists = contacts.some(
@@ -39,12 +36,10 @@ export default function App() {
     dispatch(deleteContact(id));
   };
 
-  const onFilterChange = (value) => {
-    setSearch(value);
-  };
+  
 
   const filteredContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(search.toLowerCase())
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   return (
@@ -52,7 +47,7 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={onSubmitHandler} />
       <h2>Contacts</h2>
-      <Filter onFilterChange={onFilterChange} />
+      <Filter />
       <ContactList contacts={filteredContacts} onDeleteContact={onDeleteHandler} />
     </ContainerApp>
   );

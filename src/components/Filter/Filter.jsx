@@ -1,9 +1,8 @@
 import { Input } from './Filter.styled'
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setFilter } from '../redux/filterSlice';
 
-export const Filter = ({ onFilterChange }) => {
+export const Filter = () => {
   const dispatch = useDispatch();
 
   return (
@@ -11,10 +10,8 @@ export const Filter = ({ onFilterChange }) => {
       <label htmlFor="search"> Find contacts by name: </label>
       <Input
         onChange={(e) => {
-                  dispatch(onFilterChange(e.target.value));
-                  console.log(e.target.value)
+                  dispatch(setFilter(e.target.value));
               }}
-              
         type="text"
         id="search"
       />
@@ -26,6 +23,3 @@ export const Filter = ({ onFilterChange }) => {
     
 
 
-Filter.propTypes = {
-  onFilterChange: PropTypes.func.isRequired,
-};

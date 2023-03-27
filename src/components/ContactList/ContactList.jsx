@@ -1,21 +1,13 @@
 import { ContactsList, ContactsListItem, ContactListText, Button } from './ContactList.styled'
-import PropTypes from 'prop-types';
 import { useDispatch,useSelector } from 'react-redux';
 import { deleteContact } from '../redux/contactSlice';
 import {  getContacts, getFilter } from '../redux/selectors';
-
-
-
-
     
 export default function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
     const filter = useSelector(getFilter);
-  console.log(contacts)
 
- 
-  
 
 const filteredContacts = filter
     ? contacts.filter(contact =>
@@ -23,10 +15,10 @@ const filteredContacts = filter
       )
     : contacts;
 
-
+  console.log(contacts)
   return (
     <ContactsList  contacts={filteredContacts} >
-      {contacts.map(({ id, name, number }) => (
+      {filteredContacts.map(({ id, name, number }) => (
         <ContactsListItem key={id}>
           <ContactListText>{`${name}: ${number}`}</ContactListText>
           <Button
